@@ -3,6 +3,12 @@ const Link = require('react-router-dom').Link
 const UnorderedList = require('./UnorderedList');
 const About = require('./About');
 const VoteContainer = require('../containers/VoteContainer');
+const Timer = require('./Timer');
+
+
+//1 Set's time for each workout in minutes. To be looped through 3 times.
+const timeSet = [1,1,2,1];
+
 
 const dependenciesArray = [
   'express - middleware for the node server',
@@ -43,6 +49,7 @@ const HelloWorld = function() {
       <UnorderedList items={componentsMade} />
       
       <VoteContainer label="Upvote or downvote this app!"/>
+      <Timer />
     </div>
   );
 };
