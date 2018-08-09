@@ -1,21 +1,39 @@
 #time-left{
   font-family: digital;
   font-size: 80px;
+  text-align: center;
 }
 
-.grid2x2 {
-  border: 10px solid blue;
+.grid2x1 {
   min-height: 100%;
   display: flex;
+  width: 75%;
   flex-wrap: wrap;
+  justify-content: space-around;
   flex-direction: row;
+  margin: auto;
 }
 
 .length-control {
-  color: red;
-  border: 5px solid green;
   display: flex; 
-  flex-basis: calc(50% - 40px);  
-  justify-content: center;
+  flex: 0 0 100px;
+  justify-content: space-around;
   flex-direction: column;
+}
+
+
+.timer {
+  border: 7px solid #13353a;
+  margin: 20px auto 10px auto;
+  width: 270px;
+  height: 160px;
+  border-radius: 50px;
+}
+
+#timer-label {
+  text-align: center;
+}
+
+.timerLenConText {
+  text-align: center;
 }

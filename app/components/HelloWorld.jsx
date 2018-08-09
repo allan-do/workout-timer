@@ -14,11 +14,7 @@ const timeSet = [1,1,2,1];
 const HelloWorld = function() {
   return (
     <div>
-      <h1>Hello World!</h1>
-
-      <Link to='/about'>Read about and Rate this app!</Link>
-
-      
+      <Link to='/about'>Read about and Rate this app!</Link>   
       <VoteContainer label="Upvote or downvote this app!"/>
       <Timer />
     </div>
