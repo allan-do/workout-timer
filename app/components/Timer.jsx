@@ -1,8 +1,16 @@
 const React = require('react');
 const accurateInterval = require('accurate-interval');
 const TimerLengthControl = require('./TimerLengthControl');
-// alot of code/inspiration was from here: https://codepen.io/freeCodeCamp/pen/XpKrrW?editors=0010
+// a lot of code/inspiration was from here: https://codepen.io/freeCodeCamp/pen/XpKrrW?editors=0010
 const styles = require('../style.css');
+
+var lengthControlList = [
+  {},
+  {},
+  {},
+  {}
+];
+
 
 class Timer extends React.Component {
   constructor(props) {
@@ -182,7 +190,7 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <div className="grid2x2">
+        <div className="grid2x1">
           <TimerLengthControl
           titleID="session-label"   minID="session-decrement"
           addID="session-increment" lengthID="session-length"
@@ -193,6 +201,8 @@ class Timer extends React.Component {
             addID="session-increment" lengthID="session-length"
             title="Session Length2"    onClick={this.setSeshLength2} 
             length={this.state.seshLength2}/>
+        </div>
+        <div className="grid2x1">
           <TimerLengthControl 
           titleID="session-label"   minID="session-decrement"
           addID="session-increment" lengthID="session-length"
@@ -204,6 +214,7 @@ class Timer extends React.Component {
             title="Break Length"    onClick={this.setBrkLength}
             length={this.state.brkLength}/>
         </div>
+        
         <div className="timer" style={this.state.alarmColor}>
           <div className="timer-wrapper">
             <div id='timer-label'>
