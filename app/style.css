@@ -1,0 +1,21 @@
+#time-left{
+  font-family: digital;
+  font-size: 80px;
+}
+
+.grid2x2 {
+  border: 10px solid blue;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.length-control {
+  color: red;
+  border: 5px solid green;
+  display: flex; 
+  flex-basis: calc(50% - 40px);  
+  justify-content: center;
+  flex-direction: column;
+}
