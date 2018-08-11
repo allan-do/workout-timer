@@ -4,14 +4,16 @@ const TimerLengthControl = require('./TimerLengthControl');
 // a lot of code/inspiration was from here: https://codepen.io/freeCodeCamp/pen/XpKrrW?editors=0010
 const styles = require('../style.css');
 
+
+/* Attempt to put the length control on another page, it would append to this list which would then be mapped as a component later
 var lengthControlList = [
-  {},
-  {},
-  {},
-  {}
+  {0: "Jump Rope", length: 1, type: "Session", forClick: "", minClass: "", addClass: "", titleClass: "", lengthClass: ""},
+  {1: "Squats", length: 1, type: "Session 2", forClick: ""},
+  {2: "Freestyle", length: 2, type: "Session 3", forClick: ""},
+  {3: "Break", length: 1, type: "Break", forClick: ""}
 ];
-
-
+*/
+// we may want to do something like {list.map( return component)}
 class Timer extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class Timer extends React.Component {
       timerType: 'Session',
       timer: 60,
       intervalID: '',
-      alarmColor: {color: 'black'}
+      alarmColor: {color: 'white'}
     }
     this.setBrkLength = this.setBrkLength.bind(this);
     this.setSeshLength = this.setSeshLength.bind(this);
@@ -51,11 +53,11 @@ class Timer extends React.Component {
   }
   setSeshLength2(e) {
     this.lengthControl('seshLength2', e.currentTarget.value, 
-    this.state.seshLength2, 'Session2');
+    this.state.seshLength2, 'Session 2');
   }
   setSeshLength3(e) {
     this.lengthControl('seshLength3', e.currentTarget.value, 
-    this.state.seshLength3, 'Session3');
+    this.state.seshLength3, 'Session 3');
   }
   lengthControl(stateToChange, sign, currentLength, timerType) {
     if (this.state.timerState == 'running') return;
@@ -83,8 +85,6 @@ class Timer extends React.Component {
     ) : (
       clearInterval(this.state.intervalID),
       this.setState({timerState: 'stopped'})
-      
-      //this.state.intervalID && this.state.intervalID.cancel()
     );
   }
   beginCountDown() {
@@ -107,44 +107,28 @@ class Timer extends React.Component {
       if ( this.state.timerType == 'Session' ) {
         clearInterval(this.state.intervalID);
         (
-        //this.state.intervalID && this.state.intervalID.cancel(),
         this.beginCountDown(),
-        this.switchTimer(this.state.seshLength2 * 60, 'Session2')
+        this.switchTimer(this.state.seshLength2 * 60, 'Session 2')
       )} 
-      else if (this.state.timerType == 'Session2') {
+      else if (this.state.timerType == 'Session 2') {
         clearInterval(this.state.intervalID);
         (
-        //this.state.intervalID && this.state.intervalID.cancel(),
         this.beginCountDown(),
-        this.switchTimer(this.state.seshLength3 * 60, 'Session3')
+        this.switchTimer(this.state.seshLength3 * 60, 'Session 3')
       )}
-      else if (this.state.timerType == 'Session3') {
+      else if (this.state.timerType == 'Session 3') {
         clearInterval(this.state.intervalID);
         (
-         //this.state.intervalID && this.state.intervalID.cancel(),
         this.beginCountDown(),
         this.switchTimer(this.state.brkLength * 60, 'Break')
       )}
       else {
         clearInterval(this.state.intervalID);
         (
-        //this.state.intervalID && this.state.intervalID.cancel(),
         this.beginCountDown(),
         this.switchTimer(this.state.seshLength * 60, 'Session')
       )};
     }
-    /*
-    if (timer < 0) { 
-      this.state.timerType == 'Session' ? (
-        this.state.intervalID && this.state.intervalID.cancel(),
-        this.beginCountDown(),
-        this.switchTimer(this.state.brkLength * 60, 'Break')
-      ) : (
-        this.state.intervalID && this.state.intervalID.cancel(),
-        this.beginCountDown(),
-        this.switchTimer(this.state.seshLength * 60, 'Session')
-      );
-    } */
   }
   warning(_timer) {
     let warn = _timer < 61 ? 
@@ -159,8 +143,8 @@ class Timer extends React.Component {
   switchTimer(num, str) {
     this.setState({
       timer: num,
-      timerType: str
-      //alarmColor: {color: 'white'}
+      timerType: str,
+      alarmColor: {color: 'white'}
     })
   }
   clockify() {
@@ -183,14 +167,13 @@ class Timer extends React.Component {
       alarmColor: {color: 'white'}
     });
     clearInterval(this.state.intervalID);
-    //this.state.intervalID && this.state.intervalID.cancel();
     this.audioBeep.pause();
     this.audioBeep.currentTime = 0;
   }
   render() {
     return (
       <div>
-        <div className="grid2x1">
+        <div className="container grid">
           <TimerLengthControl
           titleID="session-label"   minID="session-decrement"
           addID="session-increment" lengthID="session-length"
@@ -199,14 +182,12 @@ class Timer extends React.Component {
           <TimerLengthControl 
             titleID="session-label"   minID="session-decrement"
             addID="session-increment" lengthID="session-length"
-            title="Session Length2"    onClick={this.setSeshLength2} 
+            title="Session 2 Length"    onClick={this.setSeshLength2} 
             length={this.state.seshLength2}/>
-        </div>
-        <div className="grid2x1">
           <TimerLengthControl 
           titleID="session-label"   minID="session-decrement"
           addID="session-increment" lengthID="session-length"
-          title="Session Length3"    onClick={this.setSeshLength3} 
+          title="Session 3 Length"    onClick={this.setSeshLength3} 
           length={this.state.seshLength3}/>
           <TimerLengthControl
             titleID="break-label"   minID="break-decrement"
@@ -215,7 +196,7 @@ class Timer extends React.Component {
             length={this.state.brkLength}/>
         </div>
         
-        <div className="timer" style={this.state.alarmColor}>
+        <div className="timer" onClick={this.timerControl} style={this.state.alarmColor}>
           <div className="timer-wrapper">
             <div id='timer-label'>
               {this.state.timerType}
@@ -226,19 +207,7 @@ class Timer extends React.Component {
           </div>
         </div>
         <div className="timer-control">
-          <button id="start_stop" onClick={this.timerControl}>
-            <i className="fa fa-play "/>
-            <i className="fa fa-pause"/>
-          </button>
-          <button id="reset" onClick={this.reset}>
-            <i className="fa fa-refresh"/>
-          </button>
-        </div>
-        <div className="author"> Designed and Coded by <br />
-          <a target="_blank" href="https://goo.gl/6NNLMG"> 
-            Peter Weinberg
-          </a>
-          <p>Modification by Allan Do</p>
+          <button id="reset" onClick={this.reset} className="btn btn-danger">Reset</button>
         </div>
         <audio id="beep" preload="auto" 
           src="https://goo.gl/65cBl1"
