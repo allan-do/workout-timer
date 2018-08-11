@@ -14,14 +14,14 @@ const votes = require('./reducers');
 let store = createStore(votes);
 
 /* Import Components */
-const HelloWorld = require('./components/HelloWorld');
+const MainApp = require('./components/MainApp');
 const About = require('./components/About');
 
 render((
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Route exact path="/" component={HelloWorld}/>
+        <Route exact path="/" component={MainApp}/>
         <Route path="/about" component={About}/>
       </div>
     </BrowserRouter>

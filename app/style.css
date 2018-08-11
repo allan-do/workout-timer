@@ -3,10 +3,17 @@ body {
   color: white;
 }
 
+footer {
+  margin-top: 20px;
+}
+
 #time-left{
   font-family: digital;
   font-size: 80px;
   text-align: center;
+  justify-content: center;
+  display: flex; 
+  flex: 0 0 100%;
 }
 
 .grid {
@@ -41,19 +48,12 @@ body {
 #timer-label {
   text-align: center;
   display: flex; 
-  flex: 0 0 100px;
-  justify-content: space-around;
-  flex-direction: column;
-  border: 7px solid red;
+  flex: 0 0 100%;
+  font-size: 2em;
+  justify-content: center;
+  margin-top: 50px;
 }
 
-#time-left{
-  border: 7px solid #E0FFFF;
-  display: flex; 
-  flex: 0 0 100px;
-  justify-content: space-around;
-  flex-direction: column;
-}
 
 .timerLenConText {
   text-align: center;
@@ -65,11 +65,9 @@ body {
 }
 
 .timer-wrapper {
-
   min-height: 100%;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-around;
-  flex-direction: row;
+  flex-direction: column;
 }

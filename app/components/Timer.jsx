@@ -4,7 +4,6 @@ const TimerLengthControl = require('./TimerLengthControl');
 // a lot of code/inspiration was from here: https://codepen.io/freeCodeCamp/pen/XpKrrW?editors=0010
 const styles = require('../style.css');
 
-
 /* Attempt to put the length control on another page, it would append to this list which would then be mapped as a component later
 var lengthControlList = [
   {0: "Jump Rope", length: 1, type: "Session", forClick: "", minClass: "", addClass: "", titleClass: "", lengthClass: ""},

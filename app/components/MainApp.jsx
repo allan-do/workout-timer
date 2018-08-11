@@ -7,10 +7,24 @@ const Timer = require('./Timer');
 const styles = require('../style.css');
 
 
-//1 Set's time for each workout in minutes. To be looped through 3 times.
-const timeSet = [1];
-
 /* the main page for the index route of this app */
+const MainApp = function() {
+  return (
+    <div>
+      <Timer />
+      <footer id="footer" class="text-center">
+        <div class="container">
+          Dedicated to Danica Fernandez by Allan Do
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+
+//with redux stuff below
+
+/*
 const HelloWorld = function() {
   return (
     <div>
@@ -22,4 +36,6 @@ const HelloWorld = function() {
   );
 };
 
-module.exports = HelloWorld;
+*/
+
+module.exports = MainApp;
