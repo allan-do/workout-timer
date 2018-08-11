@@ -1,39 +1,75 @@
+body {
+  background-color: DimGrey;
+  color: white;
+}
+
 #time-left{
   font-family: digital;
   font-size: 80px;
   text-align: center;
 }
 
-.grid2x1 {
+.grid {
   min-height: 100%;
   display: flex;
   width: 75%;
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction: row;
-  margin: auto;
 }
 
 .length-control {
+  border: 10px solid transparent;
   display: flex; 
   flex: 0 0 100px;
   justify-content: space-around;
   flex-direction: column;
 }
 
+.btn-level {
+  background-color: #E0FFFF;
+}
 
 .timer {
-  border: 7px solid #13353a;
+  border: 7px solid #E0FFFF;
   margin: 20px auto 10px auto;
-  width: 270px;
-  height: 160px;
-  border-radius: 50px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
 }
 
 #timer-label {
   text-align: center;
+  display: flex; 
+  flex: 0 0 100px;
+  justify-content: space-around;
+  flex-direction: column;
+  border: 7px solid red;
+}
+
+#time-left{
+  border: 7px solid #E0FFFF;
+  display: flex; 
+  flex: 0 0 100px;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .timerLenConText {
   text-align: center;
+}
+
+.timer-control {
+  justify-content: center;
+  text-align: center;
+}
+
+.timer-wrapper {
+
+  min-height: 100%;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
 }
