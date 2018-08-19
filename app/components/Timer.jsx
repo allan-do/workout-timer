@@ -95,7 +95,6 @@ class Timer extends React.Component {
     this.setState({timer: timeNow - 1});
   }
   phaseControl() {
-    //fix this
     let timer = this.state.timer;
     let currentInd = this.state.currentTimer["index"];
     this.warning(timer);
