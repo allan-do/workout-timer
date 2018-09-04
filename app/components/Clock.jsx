@@ -35,6 +35,4 @@ class Clock extends React.Component{
   }
 }
 
-
-
 module.exports = Clock;
