@@ -3,33 +3,39 @@ const accurateInterval = require('accurate-interval');
 const TimerLengthControl = require('./TimerLengthControl');
 // a lot of code/inspiration was from here: https://codepen.io/freeCodeCamp/pen/XpKrrW?editors=0010
 const styles = require('../style.css');
-
 // Attempt to put the length control on another page, it would append to this list which would then be mapped as a component later
-var lengthControlList = [
-  {index: 0, name: "Jump Rope", length: 1, type: "Session"},
-  {index: 1, name: "Squats", length: 1, type: "Session 2"},
-  {index: 2, name: "Freestyle", length: 2, type: "Session 3"},
-  {index: 3, name: "Break", length: 1, type: "Break"}
-];
+const Link = require('react-router-dom').Link;
+
+/* old timer 
+div className="container grid">
+          {this.state.timeList.map(function(item, i) {
+            return <TimerLengthControl titleClass="session-label" lengthClass="session-length"
+          title={"Session Length"} 
+          specificTimer={item}
+          onClick={this.setSeshLength.bind(this)}
+          specificIndex={item["index"]}  
+          length={item["length"]} />;
+           }, this)}
+        </div>
+*/
 
 //decrement timer still refers to timer. we may want to do something about this. we may want to just set state for current timer length as length every update
 class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeList: lengthControlList,
-      currentTimer: lengthControlList[0],
+      timeList: this.props.lengthControlList,
+      currentTimer: this.props.lengthControlList[0],
       brkLength: 1,
       seshLength: 1,
       seshLength2: 1,
       seshLength3: 2,
       timerState: 'stopped',
-      timer: lengthControlList[0]["length"]*60,
+      timer: this.props.lengthControlList[0]["length"]*60,
       intervalID: '',
       alarmColor: {color: 'white'}
     }
     this.setSeshLength = this.setSeshLength.bind(this);
-    this.lengthControl = this.lengthControl.bind(this);
     this.timerControl = this.timerControl.bind(this);
     this.beginCountDown = this.beginCountDown.bind(this);
     this.decrementTimer = this.decrementTimer.bind(this);
@@ -46,31 +52,7 @@ class Timer extends React.Component {
     this.state.currentTimer, 'Session',sessionClicked);
   }
   //need to revise the current situation that timer is being set BACK t othe old method of using seslength
-  lengthControl(stateToChange, sign, currentTimer, timerType, sessionClicked) {
-    if (this.state.timerState == 'running') return;
-    if (this.state.currentTimer["index"] == sessionClicked) {
-      if (sign == "-" && currentTimer["length"] != 1 ) {
-        lengthControlList[sessionClicked]["length"] -= 1;
-        this.setState({timeList: lengthControlList,
-                       currentTimer: this.state.timeList[sessionClicked],
-                       timer: this.state.currentTimer["length"]*60
-                      });
-      } else if (sign == "+" && currentTimer["length"] != 60) {
-        lengthControlList[sessionClicked]["length"] += 1;
-        this.setState({timeList: lengthControlList,
-                       currentTimer: this.state.timeList[sessionClicked],
-                       timer: this.state.currentTimer["length"]*60
-                      });}        
-    } else { // this is to actually change the face of time if the othertimerType is the same one we're changing. 
-      if (sign == "-" && currentTimer != 1 ) {
-        lengthControlList[sessionClicked]["length"] -= 1;
-        this.setState({[stateToChange]: lengthControlList});
-      } else if (sign == "+" && currentTimer != 60) {
-        lengthControlList[sessionClicked]["length"] += 1;
-        this.setState({[stateToChange]: lengthControlList});
-      }
-    }
-  }
+
   timerControl() {
     let control = this.state.timerState == 'stopped' ? (
       clearInterval(this.state.intervalID),
@@ -101,9 +83,9 @@ class Timer extends React.Component {
     this.buzzer(timer);
     
     if (timer < 0) { 
-      if (currentInd == lengthControlList.length-1) {
+      if (currentInd == this.props.lengthControlList.length-1) {
         clearInterval(this.state.intervalID);
-        this.setState({currentTimer: lengthControlList[0]});
+        this.setState({currentTimer: this.props.lengthControlList[0]});
         (
           this.beginCountDown(),
           this.switchTimer(this.state.currentTimer["length"] * 60)
@@ -111,7 +93,7 @@ class Timer extends React.Component {
       } 
       else {
         clearInterval(this.state.intervalID);
-        this.setState({currentTimer: lengthControlList[currentInd+1]});
+        this.setState({currentTimer: this.props.lengthControlList[currentInd+1]});
         (
           this.beginCountDown(),
           this.switchTimer(this.state.currentTimer["length"] * 60)
@@ -144,7 +126,7 @@ class Timer extends React.Component {
   }
   reset() {
     this.setState({
-      currentTimer: lengthControlList[0],
+      currentTimer: this.props.lengthControlList[0],
       timerState: 'stopped',
       timer: 60,
       intervalID: '',
@@ -157,16 +139,6 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        <div className="container grid">
-          {this.state.timeList.map(function(item, i) {
-            return <TimerLengthControl titleClass="session-label" lengthClass="session-length"
-          title={"Session Length"} 
-          specificTimer={item}
-          onClick={this.setSeshLength.bind(this)}
-          specificIndex={item["index"]}  
-          length={item["length"]} />;
-           }, this)}
-        </div>
         <div className="timer" onClick={this.timerControl} style={this.state.alarmColor}>
           <div className="timer-wrapper">
             <div id='timer-label'>
@@ -179,6 +151,11 @@ class Timer extends React.Component {
         </div>
         <div className="timer-control">
           <button id="reset" onClick={this.reset} className="btn btn-danger">Reset</button>
+          <Link style={{display: 'block', height: '100%', width: '100%'}} to='/about'>
+            <button className="btn">
+              Edit Timers
+            </button>
+          </Link>
         </div>
         <audio id="beep" preload="auto" 
           src="https://goo.gl/65cBl1"
@@ -188,5 +165,6 @@ class Timer extends React.Component {
   }
 };
 
+//old timer Length control
 
 module.exports = Timer;

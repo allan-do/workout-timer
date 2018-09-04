@@ -16,7 +16,7 @@ footer {
   flex: 0 0 100%;
 }
 
-.grid {
+.grid, .timeEntry {
   min-height: 100%;
   display: flex;
   width: 75%;
@@ -71,4 +71,8 @@ footer {
   width: 100%;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+.linkButton {
+  border: 10px solid red;
 }

@@ -1,20 +1,36 @@
 /* actions */
 
 module.exports = {
- 
-  UPVOTE: 'UPVOTE',
-  
-  DOWNVOTE: 'DOWNVOTE',
 
-  upvote: function() {
+  ADDTIMER: 'ADDTIMER',
+  
+  REMOVETIMER: 'REMOVETIMER',
+  
+  LENGTHCONTROLLIST: 'LENGTHCONTROLLIST',
+  
+  SUBMIT: 'SUBMIT',
+
+  addtimer: function() {
     return {
-      type: this.UPVOTE
+      type: this.ADDTIMER
     }
   },
-
-  downvote: function() {
+  
+  removetimer: function() {
     return {
-      type: this.DOWNVOTE
+      type: this.REMOVETIMER
+    }
+  },
+  
+  lengthcontrollist: function() {
+    return {
+      type: this.LENGTHCONTROLLIST
+    }
+  },
+  
+  submit: function() {
+    return {
+      type: this.SUBMIT
     }
   }
   

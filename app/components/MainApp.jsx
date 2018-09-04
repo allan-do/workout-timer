@@ -2,8 +2,9 @@ const React = require('react');
 const Link = require('react-router-dom').Link
 
 const About = require('./About');
-const VoteContainer = require('../containers/VoteContainer');
+
 const Timer = require('./Timer');
+const TimerContainer = require('../containers/TimerContainer');
 const styles = require('../style.css');
 
 
@@ -11,8 +12,7 @@ const styles = require('../style.css');
 const MainApp = function() {
   return (
     <div>
-      <Link to='/about'>Read about and Rate this app!</Link>
-      <Timer />
+      <TimerContainer />
       <footer id="footer" class="text-center">
         <div class="container">
           Dedicated to Danica Fernandez by Allan Do
