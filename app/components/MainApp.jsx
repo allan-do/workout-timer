@@ -1,8 +1,6 @@
 const React = require('react');
 const Link = require('react-router-dom').Link
 
-const About = require('./About');
-
 const Timer = require('./Timer');
 const TimerContainer = require('../containers/TimerContainer');
 const styles = require('../style.css');

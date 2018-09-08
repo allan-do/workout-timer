@@ -11,13 +11,23 @@ class Form extends React.Component {
   }
   render() {
     return (
-      <div>
-        {this.state.lengthControlList.map((item, ind) => {return <FormEntry index={ind} defInput={item.name} defSelect={item.length} onAddTimer={this.props.onAddTimer} onRemoveTimer={this.props.onRemoveTimer}/>})}
-        <Link style={{display: 'block', height: '100%', width: '100%'}} to='/'>
-          <button className="btn" onClick={this.props.onSubmit}>
+      <div id="formEdit" className="text-center">
+        <Link style={{display: 'block', height: '100%', width: '100%'}} to='/timer'>
+          <button className="btn btn-info" onClick={this.props.onSubmit}>
             Submit
           </button>
         </Link>
+        <div id="toggleTimers">
+          <button id="btnAdd" className="btn btn-primary" onClick={this.props.onAddTimer}>
+              Add Timer
+          </button>
+          <button id="btnRemove" className="btn btn-warning" onClick={this.props.onRemoveTimer}>
+              Remove Timer
+          </button>
+        </div>
+        <div id="testMe">
+          {this.state.lengthControlList.map((item, ind) => {return <FormEntry index={ind} defInput={item.name} defSelect={item.length} onAddTimer={this.props.onAddTimer} onRemoveTimer={this.props.onRemoveTimer}/>})}
+        </div>
       </div>
     )
   }
