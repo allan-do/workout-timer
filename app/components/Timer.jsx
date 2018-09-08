@@ -108,6 +108,7 @@ class Timer extends React.Component {
   }
   buzzer(_timer) {
     if (_timer === 0) {
+      this.audioBeep.volume = .3;
       this.audioBeep.play();
     }
   }
@@ -151,8 +152,8 @@ class Timer extends React.Component {
         </div>
         <div className="timer-control">
           <button id="reset" onClick={this.reset} className="btn btn-danger">Reset</button>
-          <Link style={{display: 'block', height: '100%', width: '100%'}} to='/about'>
-            <button className="btn">
+          <Link style={{display: 'block', height: '100%', width: '100%'}} to='/'>
+            <button id="btnEdit" className="btn btn-info">
               Edit Timers
             </button>
           </Link>

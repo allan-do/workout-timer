@@ -19,7 +19,7 @@ footer {
 .grid, .timeEntry {
   min-height: 100%;
   display: flex;
-  width: 75%;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction: row;
@@ -73,6 +73,32 @@ footer {
   flex-direction: column;
 }
 
-.linkButton {
-  border: 10px solid red;
+input {
+  text-align: center;
+}
+
+.timeSelection {
+  width: 50px;
+  display: inline-block;
+}
+
+.incrTime, .decrTime {
+  border-radius: 50%;
+  margin: 0px 10px 0px 10px;
+}
+
+#toggleTimers {
+  margin: 10px 0px 10px 0px
+}
+
+#btnAdd {
+  margin-right: 5px;
+}
+
+#btnRemove {
+  margin-left: 5px;
+}
+
+#btnEdit {
+  margin-top: 10px;
 }
