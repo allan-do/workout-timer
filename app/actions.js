@@ -9,6 +9,12 @@ module.exports = {
   LENGTHCONTROLLIST: 'LENGTHCONTROLLIST',
   
   SUBMIT: 'SUBMIT',
+  
+  TOGGLETIME: 'TOGGLETIME',
+  
+  INCTIME: 'INCTIME',
+  
+  DECTIME: 'DECTIME',
 
   addtimer: function() {
     return {
@@ -31,6 +37,24 @@ module.exports = {
   submit: function() {
     return {
       type: this.SUBMIT
+    }
+  },
+  
+  toggletime: function () {
+    return {
+      type: this.TOGGLETIME
+    }
+  },
+  
+  inctime: function() {
+    return {
+      type: this.INCTIME
+    }
+  },
+  
+  dectime: function() {
+    return {
+      type: this.DECTIME
     }
   }
   

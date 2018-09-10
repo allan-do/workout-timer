@@ -42,7 +42,17 @@ const mapDispatchToProps = function(dispatch) {
     },
     onSubmit: function() {
       dispatch(actions.submit())
+    },
+    onToggleTime: function() {
+      dispatch(actions.toggletime())
+    },
+    onIncTime: function() {
+      dispatch(actions.inctime())
+    },
+    onDecTime: function() {
+      dispatch(actions.dectime())
     }
+    
   }
 }
 

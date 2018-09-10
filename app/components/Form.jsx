@@ -26,7 +26,7 @@ class Form extends React.Component {
           </button>
         </div>
         <div id="testMe">
-          {this.state.lengthControlList.map((item, ind) => {return <FormEntry index={ind} defInput={item.name} defSelect={item.length} onAddTimer={this.props.onAddTimer} onRemoveTimer={this.props.onRemoveTimer}/>})}
+          {this.state.lengthControlList.map((item, ind) => {return <FormEntry index={ind} defInput={item.name} defSelect={item.length} onAddTimer={this.props.onAddTimer} onRemoveTimer={this.props.onRemoveTimer} onToggleTime={this.props.onToggleTime} lengthControlList={this.state.lengthControlList}/>})}
         </div>
       </div>
     )
