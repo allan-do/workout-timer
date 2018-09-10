@@ -129,7 +129,7 @@ class Timer extends React.Component {
     this.setState({
       currentTimer: this.props.lengthControlList[0],
       timerState: 'stopped',
-      timer: 60,
+      timer: 60 * this.props.lengthControlList[0].length,
       intervalID: '',
       alarmColor: {color: 'white'}
     });

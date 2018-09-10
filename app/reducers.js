@@ -1,6 +1,6 @@
 /* reducers, this defines what functions are actually done in redux*/
 
-const { LENGTHCONTROLLIST, ADDTIMER, REMOVETIMER, SUBMIT } = require('./actions');
+const { LENGTHCONTROLLIST, ADDTIMER, REMOVETIMER, SUBMIT, TOGGLETIME } = require('./actions');
 
 function votes(state = [], action) {
   switch (action.type) {      
@@ -36,6 +36,22 @@ function votes(state = [], action) {
         voteCount: ( state.voteCount ) ? state.voteCount + 1 : 1,
         lengthControlList: state.lengthControlList    
       });
+    case TOGGLETIME:
+      let action = event.target.id.slice(0,3);
+      let currentId = event.target.id.slice(3);
+      let currentEntry = document.getElementById("timeSelect"+currentId);
+      let currentValue = parseInt(currentEntry.value);  
+      if (action == 'inc'){
+        if (currentValue < 60){
+          state.lengthControlList[parseInt(currentId)].length += 1;
+        }
+      }
+      else {
+        if (currentValue > 1) {
+          state.lengthControlList[parseInt(currentId)].length -= 1;
+        }
+      }
+      return state;
     default:
       return state;
   }
