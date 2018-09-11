@@ -13,7 +13,7 @@ const MainApp = function() {
       <TimerContainer />
       <footer id="footer" class="text-center">
         <div class="container">
-          Dedicated to Danica Fernandez by Allan Do
+          Dedicated to the Bubs by the Bubs
         </div>
       </footer>
     </div>

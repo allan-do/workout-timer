@@ -44,7 +44,8 @@ class Timer extends React.Component {
     this.buzzer = this.buzzer.bind(this);
     this.switchTimer = this.switchTimer.bind(this);
     this.clockify = this.clockify.bind(this);
-    this.reset = this.reset.bind(this);
+    this.fullReset = this.fullReset.bind(this);
+    this.intervalReset = this.intervalReset.bind(this);
   }
   setSeshLength(e) {
     let sessionClicked = e.currentTarget.parentElement.id; 
@@ -125,11 +126,22 @@ class Timer extends React.Component {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     return minutes + ':' + seconds;
   }
-  reset() {
+  fullReset() {
     this.setState({
       currentTimer: this.props.lengthControlList[0],
       timerState: 'stopped',
       timer: 60 * this.props.lengthControlList[0].length,
+      intervalID: '',
+      alarmColor: {color: 'white'}
+    });
+    clearInterval(this.state.intervalID);
+    this.audioBeep.pause();
+    this.audioBeep.currentTime = 0;
+  }
+  intervalReset() {
+    this.setState({
+      timerState: 'stopped',
+      timer: 60 * this.state.currentTimer.length,
       intervalID: '',
       alarmColor: {color: 'white'}
     });
@@ -151,7 +163,12 @@ class Timer extends React.Component {
           </div>
         </div>
         <div className="timer-control">
-          <button id="reset" onClick={this.reset} className="btn btn-danger">Reset</button>
+          <div style={{display: 'block', height: '100%', width: '100%', margin: "0px 0px 10px 0px"}} >
+            <button id="fullReset" onClick={this.fullReset} className="btn btn-danger">Full Reset</button>
+          </div>
+          <div style={{display: 'block', height: '100%', width: '100%'}}>
+          <button id="intervalReset" onClick={this.intervalReset} className="btn btn-light">Interval Reset</button>
+          </div>
           <Link style={{display: 'block', height: '100%', width: '100%'}} to='/'>
             <button id="btnEdit" className="btn btn-info">
               Edit Timers
